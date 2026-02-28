@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Me perdonas?</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#2b5876,#4e4376);
+}
+
+.card{
+    background:white;
+    padding:50px;
+    border-radius:20px;
+    text-align:center;
+    width:360px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+    position:relative;
+}
+
+h1{
+    margin-bottom:40px;
+    color:#333;
+}
+
+.buttons{
+    position:relative;
+    height:120px;
+}
+
+button{
+    padding:12px 30px;
+    font-size:16px;
+    border-radius:30px;
+    border:none;
+    cursor:pointer;
+    transition:0.3s ease;
+    position:absolute;
+}
+
+#si{
+    background:#4e4376;
+    color:white;
+    left:20%;
+    top:40px;
+}
+
+#no{
+    background:white;
+    color:#4e4376;
+    border:2px solid #4e4376;
+    right:20%;
+    top:40px;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.message{
+    margin-top:25px;
+    min-height:24px;
+    color:#444;
+    font-size:15px;
+}
+
+.heart-container{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    color:white;
+    text-align:center;
+    animation:fadeIn 1s ease;
+}
+
+.heart{
+    width:150px;
+    height:150px;
+    background:red;
+    position:relative;
+    transform:rotate(-45deg);
+    animation:pulse 1s infinite;
+    margin-bottom:30px;
+}
+
+.heart::before,
+.heart::after{
+    content:"";
+    width:150px;
+    height:150px;
+    background:red;
+    border-radius:50%;
+    position:absolute;
+}
+
+.heart::before{
+    top:-75px;
+    left:0;
+}
+
+.heart::after{
+    left:75px;
+    top:0;
+}
+
+@keyframes pulse{
+    0%{ transform:rotate(-45deg) scale(1); }
+    50%{ transform:rotate(-45deg) scale(1.1); }
+    100%{ transform:rotate(-45deg) scale(1); }
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+.final-btn{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:white;
+    color:#ff4f7b;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.letter{
+    padding:40px;
+    background:white;
+    color:#333;
+    height:100vh;
+    overflow:auto;
+    animation:fadeIn 1s ease;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>¿Me perdonas?</h1>
+
+    <div class="buttons" id="area">
+        <button id="si">Sí</button>
+        <button id="no">No</button>
+    </div>
+
+    <div class="message" id="message"></div>
+</div>
+
+<script>
+const botonNo = document.getElementById("no");
+const botonSi = document.getElementById("si");
+const message = document.getElementById("message");
+const area = document.getElementById("area");
+
+const mensajesNo = [
+    "¿Estás segura?",
+    "Perdóname",
+    "Fue una broma",
+    "No quiero que estés molesta",
+    "Hablemos con calma",
+    "De verdad lo siento"
+];
+
+let indice = 0;
+
+botonNo.addEventListener("click", function(){
+    if(indice < mensajesNo.length){
+        message.textContent = mensajesNo[indice];
+        indice++;
+    }
+
+    const areaWidth = area.clientWidth - botonNo.offsetWidth;
+    const areaHeight = area.clientHeight - botonNo.offsetHeight;
+
+    const randomX = Math.random() * areaWidth;
+    const randomY = Math.random() * areaHeight;
+
+    botonNo.style.left = randomX + "px";
+    botonNo.style.top = randomY + "px";
+});
+
+botonSi.addEventListener("click", function(){
+    document.body.innerHTML = `
+    <div class="heart-container">
+        <div class="heart"></div>
+        <h1>Te quiero mucho mi amor</h1>
+        <button class="final-btn" onclick="mostrarCarta()">Haz Click</button>
+    </div>
+    `;
+});
+
+function mostrarCarta(){
+    document.body.innerHTML = `
+    <div class="letter">
+        <h2>Para ti, mi amor</h2>
+        <
+        <p>
+        Amor mío, se me pasó la mano al decirte eso jejeje, te lo dije sin querer mi amor, no quiero que estes asi  porque lo último que quiero es que algo que venga de mí pueda sentir mal mi amir.
+        </p>
+        
+        <p>
+        Quiero que sepas lo mucho que te quiero, lo que siento por ti no es un juego ni una broma, es algo sincero que ha ido creciendo cada día, algo que me nace cuando pienso en ti y cuando hablo contigo.
+        </p>
+        
+        <p>
+        Aunque estés lejos y la distancia a veces se sienta pesada, te pienso muchísimo, te extraño más de lo que imaginas, me haces falta en mis días, en mis noches y en esos momentos donde quisiera simplemente abrazarte.
+        </p>
+        
+        <p>
+        No es fácil querer a alguien que está lejos, pero contigo todo vale la pena, porque lo que siento es verdadero y no depende de kilómetros ni del tiempo.
+        </p>
+        
+        <p>
+        Me importas demasiado, me gusta hablar contigo, reír contigo, compartir mis cosas contigo, y saber que aunque estés lejos eres  importante de mi vida.
+        </p>
+ <br>
+        <h3>Te quiero muchísimo mi amor, y te extraño más de lo que puedo explicar.</h3>
+    </div>
+    `;
+}
+</script>
+
+</body>
+</html>
